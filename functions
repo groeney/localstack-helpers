@@ -1,9 +1,12 @@
 ### Localstack || Kinesis | Lambda | SNS | DynamoDB ###
 
 function reload_executer() {
+	read -p "Please provide a 10 digit phone number to use on local:" phone
+	read -p "Please provide a valid email to use on local:" email
+
 	delete_lambda "$1Executer"
 	package_lambda "$1Executer"
-	create_lambda "$1Executer" $2
+	create_lambda "$1Executer" $2,LOCAL_PHONE=$phone,LOCAL_EMAIL=$email
 	subscribe_to_sns_topic "$1Executer" local-events
 }
 
