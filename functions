@@ -36,11 +36,11 @@ function toggle_stream() {
 }
 
 function disable_stream() {
-	awslocal dynamodb update-table --table-name development.$1 --stream-specification '{ "StreamEnabled": false }'
+	awslocal dynamodb update-table --table-name $1 --stream-specification '{ "StreamEnabled": false }'
 }
 
 function enable_stream() {
-	 awslocal dynamodb update-table --table-name development.$1 --stream-specification '{ "StreamEnabled": true, "StreamViewType": "NEW_AND_OLD_IMAGES" }'
+	 awslocal dynamodb update-table --table-name $1 --stream-specification '{ "StreamEnabled": true, "StreamViewType": "NEW_AND_OLD_IMAGES" }'
 }
 
 function create_ddb_stream_to_lambda_mapping() {
